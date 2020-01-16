@@ -1,4 +1,4 @@
-module github.com/swaggo/swag/example/go-module-support
+module github.com/mporracindie/swag/example/go-module-support
 
 go 1.12
 

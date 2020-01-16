@@ -461,43 +461,37 @@ func getSchemes(commentLine string) []string {
 
 // ParseRouterAPIInfo parses router api info for given astFile
 func (parser *Parser) ParseRouterAPIInfo(fileName string, astFile *ast.File) error {
-	for _, astDescription := range astFile.Decls {
-		switch astDeclaration := astDescription.(type) {
-		case *ast.FuncDecl:
-			if astDeclaration.Doc != nil && astDeclaration.Doc.List != nil {
-				operation := NewOperation() //for per 'function' comment, create a new 'Operation' object
-				operation.parser = parser
-				for _, comment := range astDeclaration.Doc.List {
-					if err := operation.ParseComment(comment.Text, astFile); err != nil {
-						return fmt.Errorf("ParseComment error in file %s :%+v", fileName, err)
-					}
-				}
-				var pathItem spec.PathItem
-				var ok bool
-
-				if pathItem, ok = parser.swagger.Paths.Paths[operation.Path]; !ok {
-					pathItem = spec.PathItem{}
-				}
-				switch strings.ToUpper(operation.HTTPMethod) {
-				case http.MethodGet:
-					pathItem.Get = &operation.Operation
-				case http.MethodPost:
-					pathItem.Post = &operation.Operation
-				case http.MethodDelete:
-					pathItem.Delete = &operation.Operation
-				case http.MethodPut:
-					pathItem.Put = &operation.Operation
-				case http.MethodPatch:
-					pathItem.Patch = &operation.Operation
-				case http.MethodHead:
-					pathItem.Head = &operation.Operation
-				case http.MethodOptions:
-					pathItem.Options = &operation.Operation
-				}
-
-				parser.swagger.Paths.Paths[operation.Path] = pathItem
+	for _, astDescription := range astFile.Comments {
+		operation := NewOperation() //for per 'function' comment, create a new 'Operation' object
+		operation.parser = parser
+		for _, comment := range astDescription.List { 
+			if err := operation.ParseComment(comment.Text, astFile); err != nil {
+				return fmt.Errorf("ParseComment error in file %s :%+v", fileName, err)
 			}
 		}
+		var pathItem spec.PathItem
+		var ok bool
+
+		if pathItem, ok = parser.swagger.Paths.Paths[operation.Path]; !ok {
+			pathItem = spec.PathItem{}
+		}
+		switch strings.ToUpper(operation.HTTPMethod) {
+		case http.MethodGet:
+			pathItem.Get = &operation.Operation
+		case http.MethodPost:
+			pathItem.Post = &operation.Operation
+		case http.MethodDelete:
+			pathItem.Delete = &operation.Operation
+		case http.MethodPut:
+			pathItem.Put = &operation.Operation
+		case http.MethodPatch:
+			pathItem.Patch = &operation.Operation
+		case http.MethodHead:
+			pathItem.Head = &operation.Operation
+		case http.MethodOptions:
+			pathItem.Options = &operation.Operation
+		}
+		parser.swagger.Paths.Paths[operation.Path] = pathItem
 	}
 
 	return nil

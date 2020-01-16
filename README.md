@@ -1,15 +1,15 @@
 # swag
 
-<img align="right" width="180px" src="https://raw.githubusercontent.com/swaggo/swag/master/assets/swaggo.png">
+<img align="right" width="180px" src="https://raw.githubusercontent.com/mporracindie/swag/master/assets/swaggo.png">
 
-[![Travis Status](https://img.shields.io/travis/swaggo/swag/master.svg)](https://travis-ci.org/swaggo/swag)
-[![Coverage Status](https://img.shields.io/codecov/c/github/swaggo/swag/master.svg)](https://codecov.io/gh/swaggo/swag)
-[![Go Report Card](https://goreportcard.com/badge/github.com/swaggo/swag)](https://goreportcard.com/report/github.com/swaggo/swag)
+[![Travis Status](https://img.shields.io/travis/mporracindie/swag/master.svg)](https://travis-ci.org/mporracindie/swag)
+[![Coverage Status](https://img.shields.io/codecov/c/github/mporracindie/swag/master.svg)](https://codecov.io/gh/mporracindie/swag)
+[![Go Report Card](https://goreportcard.com/badge/github.com/mporracindie/swag)](https://goreportcard.com/report/github.com/mporracindie/swag)
 [![codebeat badge](https://codebeat.co/badges/71e2f5e5-9e6b-405d-baf9-7cc8b5037330)](https://codebeat.co/projects/github-com-swaggo-swag-master)
-[![Go Doc](https://godoc.org/github.com/swaggo/swagg?status.svg)](https://godoc.org/github.com/swaggo/swag)
+[![Go Doc](https://godoc.org/github.com/mporracindie/swagg?status.svg)](https://godoc.org/github.com/mporracindie/swag)
 [![Backers on Open Collective](https://opencollective.com/swag/backers/badge.svg)](#backers) 
 [![Sponsors on Open Collective](https://opencollective.com/swag/sponsors/badge.svg)](#sponsors) [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fswaggo%2Fswag.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fswaggo%2Fswag?ref=badge_shield)
-[![Release](https://img.shields.io/github/release/swaggo/swag.svg?style=flat-square)](https://github.com/swaggo/swag/releases)
+[![Release](https://img.shields.io/github/release/mporracindie/swag.svg?style=flat-square)](https://github.com/mporracindie/swag/releases)
 
 
 Swag converts Go annotations to Swagger Documentation 2.0. We've created a variety of plugins for popular [Go web frameworks](#supported-web-frameworks). This allows you to quickly integrate with an existing Go project (using Swagger UI).
@@ -41,11 +41,11 @@ Swag converts Go annotations to Swagger Documentation 2.0. We've created a varie
 
 2. Download swag by using:
 ```sh
-$ go get -u github.com/swaggo/swag/cmd/swag
+$ go get -u github.com/mporracindie/swag/cmd/swag
 ```
 To build from source you need [Go](https://golang.org/dl/) (1.9 or newer).
 
-Or download a pre-compiled binary from the [release page](https://github.com/swaggo/swag/releases).
+Or download a pre-compiled binary from the [release page](https://github.com/mporracindie/swag/releases).
 
 3. Run `swag init` in the project's root folder which contains the `main.go` file. This will parse your comments and generate the required files (`docs` folder and `docs/docs.go`).
 ```sh
@@ -85,7 +85,7 @@ OPTIONS:
 
 ## How to use it with Gin
 
-Find the example source code [here](https://github.com/swaggo/swag/tree/master/example/celler).
+Find the example source code [here](https://github.com/mporracindie/swag/tree/master/example/celler).
 
 1. After using `swag init` to generate Swagger 2.0 docs, import the following packages:
 ```go
@@ -216,8 +216,8 @@ import (
 	"strconv"
 
 	"github.com/gin-gonic/gin"
-	"github.com/swaggo/swag/example/celler/httputil"
-	"github.com/swaggo/swag/example/celler/model"
+	"github.com/mporracindie/swag/example/celler/httputil"
+	"github.com/mporracindie/swag/example/celler/model"
 )
 
 // ShowAccount godoc
@@ -279,7 +279,7 @@ $ swag init
 
 4. Run your app, and browse to http://localhost:8080/swagger/index.html. You will see Swagger 2.0 Api documents as shown below:
 
-![swagger_index.html](https://raw.githubusercontent.com/swaggo/swag/master/assets/swagger-image.png)
+![swagger_index.html](https://raw.githubusercontent.com/mporracindie/swag/master/assets/swagger-image.png)
 
 ## Implementation Status
 
@@ -306,7 +306,7 @@ $ swag init
 ## General API Info
 
 **Example**
-[celler/main.go](https://github.com/swaggo/swag/blob/master/example/celler/main.go)
+[celler/main.go](https://github.com/mporracindie/swag/blob/master/example/celler/main.go)
 
 | annotation  | description                                | example                         |
 |-------------|--------------------------------------------|---------------------------------|
@@ -345,7 +345,7 @@ When a short string in your documentation is insufficient, or you need images, c
 ## API Operation
 
 **Example**
-[celler/controller](https://github.com/swaggo/swag/tree/master/example/celler/controller)
+[celler/controller](https://github.com/mporracindie/swag/tree/master/example/celler/controller)
 
 
 | annotation  | description                                                                                                                |
@@ -531,7 +531,7 @@ type Account struct {
 ```
 
 ### Use swaggertype tag to supported custom type
-[#201](https://github.com/swaggo/swag/issues/201#issuecomment-475479409)
+[#201](https://github.com/mporracindie/swag/issues/201#issuecomment-475479409)
 
 ```go
 type TimestampTime struct {
@@ -567,7 +567,7 @@ type Account struct {
 }
 ```
 
-[#379](https://github.com/swaggo/swag/issues/379)
+[#379](https://github.com/mporracindie/swag/issues/379)
 ```go
 type CerticateKeyPair struct {
 	Crt []byte `json:"crt" swaggertype:"string" format:"base64" example:"U3dhZ2dlciByb2Nrcw=="`
@@ -648,7 +648,7 @@ This project was inspired by [yvasiyarov/swagger](https://github.com/yvasiyarov/
 ## Contributors
 
 This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
-<a href="https://github.com/swaggo/swag/graphs/contributors"><img src="https://opencollective.com/swag/contributors.svg?width=890&button=false" /></a>
+<a href="https://github.com/mporracindie/swag/graphs/contributors"><img src="https://opencollective.com/swag/contributors.svg?width=890&button=false" /></a>
 
 
 ## Backers
